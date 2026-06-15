@@ -12,4 +12,6 @@ export interface MatchDataProvider {
   getLineup(matchId: string): Promise<Lineup | null>;
   /** Free-text player search for the research view. */
   searchPlayers(query: string): Promise<PlayerProfile[]>;
+  /** Squad/roster for a team by name (for the team selection modal). */
+  getTeamSquad(teamName: string): Promise<PlayerProfile[]>;
 }

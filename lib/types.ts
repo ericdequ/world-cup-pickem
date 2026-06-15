@@ -80,6 +80,8 @@ export interface Team {
   /** Crest/flag image URL, if the data source provides one. */
   badge?: string;
   group?: string;
+  /** True for not-yet-decided knockout slots (e.g. "1A", "W73"). */
+  placeholder?: boolean;
 }
 
 export interface Match {

@@ -41,20 +41,31 @@ function TeamRow({
   value,
   onChange,
   disabled,
+  onTeamClick,
 }: {
   team: Team;
   value: number;
   onChange: (v: number) => void;
   disabled: boolean;
+  onTeamClick?: (team: Team) => void;
 }) {
+  const clickable = Boolean(onTeamClick) && !team.placeholder;
   return (
     <div className="flex items-center justify-between gap-3">
-      <div className="flex items-center gap-2.5">
+      <button
+        type="button"
+        disabled={!clickable}
+        onClick={() => onTeamClick?.(team)}
+        className={cn(
+          "flex items-center gap-2.5 text-left",
+          clickable && "cursor-pointer hover:opacity-80",
+        )}
+      >
         <span className="inline-flex h-7 w-9 items-center justify-center rounded bg-pitch text-[11px] font-bold text-gold-light">
           {team.code}
         </span>
         <span className="text-[15px] font-semibold">{team.name}</span>
-      </div>
+      </button>
       <ScoreStepper value={value} onChange={(v) => onChange(Math.max(0, v))} disabled={disabled} />
     </div>
   );
@@ -64,10 +75,12 @@ export function MatchCard({
   match,
   prediction,
   onChange,
+  onTeamClick,
 }: {
   match: Match;
   prediction?: Prediction;
   onChange: (score: Score) => void;
+  onTeamClick?: (team: Team) => void;
 }) {
   const { t } = useTranslation();
   const locked = isLocked(match);
@@ -91,8 +104,20 @@ export function MatchCard({
       </div>
 
       <div className="flex flex-col gap-3">
-        <TeamRow team={match.home} value={score.home} onChange={(v) => set("home", v)} disabled={locked} />
-        <TeamRow team={match.away} value={score.away} onChange={(v) => set("away", v)} disabled={locked} />
+        <TeamRow
+          team={match.home}
+          value={score.home}
+          onChange={(v) => set("home", v)}
+          disabled={locked}
+          onTeamClick={onTeamClick}
+        />
+        <TeamRow
+          team={match.away}
+          value={score.away}
+          onChange={(v) => set("away", v)}
+          disabled={locked}
+          onTeamClick={onTeamClick}
+        />
       </div>
 
       {earned !== null && (

@@ -19,9 +19,11 @@
     "points": "+{{n}} Pkt.",
     "noPoints": "Keine Punkte in diesem Spiel",
     "yourPick": "dein Tipp {{home}}–{{away}}",
-    "setScore": "Ergebnis eingeben, um deinen Tipp zu speichern"
+    "setScore": "Ergebnis eingeben, um deinen Tipp zu speichern",
+    "viewTeam": "{{team}} ansehen"
   },
-  "predict": { "loading": "Spiele werden geladen…", "error": "Spiele konnten nicht geladen werden." },
+  "predict": { "loading": "Spiele werden geladen…", "error": "Spiele konnten nicht geladen werden.", "groups": "Gruppen", "bracket": "K.-o.-Runde" },
+  "team": { "squad": "Kader", "loading": "Kader wird geladen…", "none": "Keine Spieler gefunden.", "tbd": "Noch offen — qualifiziert sich aus früheren Runden.", "viewPlayers": "Kader ansehen" },
   "profile": {
     "account": "Konto",
     "localMode": "Lokaler Modus — deine Tipps werden auf diesem Gerät gespeichert.",

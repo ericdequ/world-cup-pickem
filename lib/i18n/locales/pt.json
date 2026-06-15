@@ -19,9 +19,11 @@
     "points": "+{{n}} pts",
     "noPoints": "Sem pontos nesta partida",
     "yourPick": "seu palpite {{home}}–{{away}}",
-    "setScore": "Defina um placar para salvar seu palpite"
+    "setScore": "Defina um placar para salvar seu palpite",
+    "viewTeam": "Ver {{team}}"
   },
-  "predict": { "loading": "Carregando jogos…", "error": "Não foi possível carregar os jogos." },
+  "predict": { "loading": "Carregando jogos…", "error": "Não foi possível carregar os jogos.", "groups": "Grupos", "bracket": "Mata-mata" },
+  "team": { "squad": "Elenco", "loading": "Carregando elenco…", "none": "Nenhum jogador encontrado.", "tbd": "A definir — classifica das fases anteriores.", "viewPlayers": "Ver elenco" },
   "profile": {
     "account": "Conta",
     "localMode": "Modo local — seus palpites são salvos neste dispositivo.",

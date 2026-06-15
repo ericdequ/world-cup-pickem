@@ -19,9 +19,11 @@
     "points": "+{{n}} pts",
     "noPoints": "Aucun point pour ce match",
     "yourPick": "votre pronostic {{home}}–{{away}}",
-    "setScore": "Entrez un score pour enregistrer votre pronostic"
+    "setScore": "Entrez un score pour enregistrer votre pronostic",
+    "viewTeam": "Voir {{team}}"
   },
-  "predict": { "loading": "Chargement des matchs…", "error": "Impossible de charger les matchs." },
+  "predict": { "loading": "Chargement des matchs…", "error": "Impossible de charger les matchs.", "groups": "Groupes", "bracket": "Tableau" },
+  "team": { "squad": "Effectif", "loading": "Chargement de l’effectif…", "none": "Aucun joueur trouvé.", "tbd": "À déterminer — qualifié des tours précédents.", "viewPlayers": "Voir l’effectif" },
   "profile": {
     "account": "Compte",
     "localMode": "Mode local — vos pronostics sont enregistrés sur cet appareil.",

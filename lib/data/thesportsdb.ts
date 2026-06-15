@@ -145,15 +145,27 @@ export const theSportsDbProvider: MatchDataProvider = {
     const data = await getJson<{ player: SdbPlayer[] | null }>(
       `${BASE}/searchplayers.php?p=${encodeURIComponent(q)}`,
     );
-    const players = data?.player ?? [];
-    return players.map<PlayerProfile>((p) => ({
-      id: p.idPlayer,
-      name: p.strPlayer,
-      team: p.strTeam ?? undefined,
-      nationality: p.strNationality ?? undefined,
-      position: p.strPosition ?? undefined,
-      thumb: p.strThumb ?? undefined,
-      description: p.strDescriptionEN ?? undefined,
-    }));
+    return (data?.player ?? []).map(toPlayerProfile);
+  },
+
+  async getTeamSquad(teamName) {
+    const t = teamName.trim();
+    if (!t) return [];
+    const data = await getJson<{ player: SdbPlayer[] | null }>(
+      `${BASE}/searchplayers.php?t=${encodeURIComponent(t)}`,
+    );
+    return (data?.player ?? []).map(toPlayerProfile);
   },
 };
+
+function toPlayerProfile(p: SdbPlayer): PlayerProfile {
+  return {
+    id: p.idPlayer,
+    name: p.strPlayer,
+    team: p.strTeam ?? undefined,
+    nationality: p.strNationality ?? undefined,
+    position: p.strPosition ?? undefined,
+    thumb: p.strThumb ?? undefined,
+    description: p.strDescriptionEN ?? undefined,
+  };
+}

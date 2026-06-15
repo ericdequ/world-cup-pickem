@@ -59,7 +59,9 @@ lib/
 hooks/                useMatches/useLineup, usePlayerSearch, usePredictions,
                       useAuth, useFavoriteTeam, useAsyncData
 components/
-  predictions/        PredictionsBoard, MatchCard (score steppers, kickoff lock)
+  predictions/        PredictionsBoard (Groups|Bracket hub), GroupStage, MatchCard
+  bracket/            BracketView + BracketNode (interactive knockout tree)
+  match/ team/         MatchModal (predict + open team), TeamModal (squad/players)
   lineup/ players/     LineupDisplay, PlayerResearch (fed by dataProvider)
   pool/ tournament/    PoolPanel (friends + global + rules), PotPanel (transparency)
   profile/            AccountCard (Supabase magic-link), FavoriteTeamCard, NotificationsCard

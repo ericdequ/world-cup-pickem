@@ -19,9 +19,11 @@
     "points": "+{{n}} pts",
     "noPoints": "No points this match",
     "yourPick": "your pick {{home}}–{{away}}",
-    "setScore": "Set a score to save your prediction"
+    "setScore": "Set a score to save your prediction",
+    "viewTeam": "View {{team}}"
   },
-  "predict": { "loading": "Loading fixtures…", "error": "Couldn’t load fixtures." },
+  "predict": { "loading": "Loading fixtures…", "error": "Couldn’t load fixtures.", "groups": "Groups", "bracket": "Bracket" },
+  "team": { "squad": "Squad", "loading": "Loading squad…", "none": "No players found.", "tbd": "To be decided — qualifies from earlier rounds.", "viewPlayers": "View squad" },
   "profile": {
     "account": "Account",
     "localMode": "Running in local mode — your picks are saved on this device.",

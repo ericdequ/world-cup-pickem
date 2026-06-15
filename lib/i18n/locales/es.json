@@ -19,9 +19,11 @@
     "points": "+{{n}} pts",
     "noPoints": "Sin puntos en este partido",
     "yourPick": "tu pronóstico {{home}}–{{away}}",
-    "setScore": "Pon un marcador para guardar tu pronóstico"
+    "setScore": "Pon un marcador para guardar tu pronóstico",
+    "viewTeam": "Ver {{team}}"
   },
-  "predict": { "loading": "Cargando partidos…", "error": "No se pudieron cargar los partidos." },
+  "predict": { "loading": "Cargando partidos…", "error": "No se pudieron cargar los partidos.", "groups": "Grupos", "bracket": "Eliminatoria" },
+  "team": { "squad": "Plantilla", "loading": "Cargando plantilla…", "none": "No se encontraron jugadores.", "tbd": "Por definir — clasifica de rondas anteriores.", "viewPlayers": "Ver plantilla" },
   "profile": {
     "account": "Cuenta",
     "localMode": "Modo local — tus pronósticos se guardan en este dispositivo.",

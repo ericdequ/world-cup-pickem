@@ -27,5 +27,6 @@ export function cachedProvider(inner: MatchDataProvider): MatchDataProvider {
     },
     getLineup: inner.getLineup,
     searchPlayers: inner.searchPlayers,
+    getTeamSquad: inner.getTeamSquad,
   };
 }
