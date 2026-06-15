@@ -5,7 +5,9 @@ import { LanguageProvider } from "@/components/i18n/LanguageProvider";
 import { NowProvider } from "@/components/time/NowProvider";
 
 const inter = Inter({
-  subsets: ["latin"],
+  // Cover diacritics + scripts found in player names worldwide (Modrić, Çalhanoğlu,
+  // Mbappé, Cyrillic/Greek). Subsets load lazily per unicode-range, so this is cheap.
+  subsets: ["latin", "latin-ext", "cyrillic", "greek", "vietnamese"],
   variable: "--font-inter",
   display: "swap",
 });

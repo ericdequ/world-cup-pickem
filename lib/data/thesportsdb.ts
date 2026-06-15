@@ -24,8 +24,12 @@ async function getJson<T>(url: string): Promise<T | null> {
   }
 }
 
+// 3-letter team code. Folds diacritics to their base letter first (so "Côte
+// d'Ivoire" → "COT", not "CTE") instead of dropping accented characters.
 const codeFor = (name: string): string =>
   name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-zA-Z ]/g, "")
     .trim()
     .slice(0, 3)

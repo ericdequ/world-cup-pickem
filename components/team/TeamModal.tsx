@@ -17,7 +17,7 @@ function PlayerRow({ player }: { player: PlayerProfile }) {
         </div>
       )}
       <div className="min-w-0">
-        <div className="truncate text-[14px] font-semibold text-cream">{player.name}</div>
+        <div className="text-[14px] font-semibold text-cream break-words">{player.name}</div>
         {player.position && <div className="text-[11px] text-muted">{player.position}</div>}
       </div>
     </div>
