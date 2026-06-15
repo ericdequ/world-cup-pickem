@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo } from "react";
-import { STAGE_LABELS, type Match, type Stage } from "@/lib/types";
+import { useTranslation } from "react-i18next";
+import { type Match, type Stage } from "@/lib/types";
 import { useMatches } from "@/hooks/useMatches";
 import { usePredictions } from "@/hooks/usePredictions";
 import { MatchCard } from "./MatchCard";
@@ -17,6 +18,7 @@ const STAGE_ORDER: Stage[] = [
 ];
 
 export function PredictionsBoard() {
+  const { t } = useTranslation();
   const { data: matches, loading, error } = useMatches();
   const { predictions, setPrediction } = usePredictions();
 
@@ -33,16 +35,17 @@ export function PredictionsBoard() {
     }));
   }, [matches]);
 
-  if (loading) return <p className="py-12 text-center text-sm text-muted">Loading fixtures…</p>;
+  if (loading)
+    return <p className="py-12 text-center text-sm text-muted">{t("predict.loading")}</p>;
   if (error && matches.length === 0)
-    return <p className="py-12 text-center text-sm text-red-400">Couldn’t load fixtures.</p>;
+    return <p className="py-12 text-center text-sm text-red-400">{t("predict.error")}</p>;
 
   return (
     <div className="flex flex-col gap-7">
       {grouped.map(({ stage, matches: stageMatches }) => (
         <section key={stage}>
           <h2 className="mb-3 text-[13px] font-bold uppercase tracking-[0.15em] text-gold">
-            {STAGE_LABELS[stage]}
+            {t(`stage.${stage}`)}
           </h2>
           <div className="flex flex-col gap-3">
             {stageMatches.map((match) => (

@@ -1,6 +1,7 @@
 import { AccountCard } from "./AccountCard";
 import { FavoriteTeamCard } from "./FavoriteTeamCard";
 import { NotificationsCard } from "./NotificationsCard";
+import { LanguageSwitcher } from "@/components/i18n/LanguageSwitcher";
 
 export function ProfilePanel() {
   return (
@@ -8,6 +9,7 @@ export function ProfilePanel() {
       <AccountCard />
       <FavoriteTeamCard />
       <NotificationsCard />
+      <LanguageSwitcher />
     </div>
   );
 }

@@ -1,0 +1,59 @@
+{
+  "nav": { "predict": "Pronostics", "lineups": "Compositions", "players": "Joueurs", "pool": "Cagnotte", "profile": "Profil" },
+  "section": { "predict": "Faites vos pronostics", "lineups": "Compositions", "players": "Recherche de joueurs", "pool": "La cagnotte", "profile": "Profil" },
+  "stage": {
+    "group": "Phase de groupes",
+    "round-of-32": "Seizièmes de finale",
+    "round-of-16": "Huitièmes de finale",
+    "quarter-final": "Quarts de finale",
+    "semi-final": "Demi-finales",
+    "third-place": "Petite finale",
+    "final": "Finale"
+  },
+  "match": {
+    "group": "Groupe {{group}}",
+    "locked": "Verrouillé",
+    "locksAt": "Clôture {{time}}",
+    "live": "EN DIRECT",
+    "ft": "Fin {{score}}",
+    "points": "+{{n}} pts",
+    "noPoints": "Aucun point pour ce match",
+    "yourPick": "votre pronostic {{home}}–{{away}}",
+    "setScore": "Entrez un score pour enregistrer votre pronostic"
+  },
+  "predict": { "loading": "Chargement des matchs…", "error": "Impossible de charger les matchs." },
+  "profile": {
+    "account": "Compte",
+    "localMode": "Mode local — vos pronostics sont enregistrés sur cet appareil.",
+    "signInPrompt": "Connectez-vous pour enregistrer vos pronostics et jouer la cagnotte mondiale.",
+    "sendLink": "Envoyer le lien magique",
+    "linkSent": "Consultez votre e-mail pour le lien de connexion.",
+    "signedIn": "Connecté · synchronisé",
+    "signOut": "Se déconnecter",
+    "favorite": "Équipe favorite",
+    "favoriteHint": "Recevez un rappel avant chaque match et à l’arrivée des résultats.",
+    "reminders": "Rappels",
+    "remindersHint": "Alertes de coup d’envoi et rappels de score après le match.",
+    "enableNotifs": "Activer les notifications",
+    "notifsOn": "Notifications activées",
+    "language": "Langue",
+    "email": "vous@email.com"
+  },
+  "pot": {
+    "title": "Cagnotte mondiale de la Coupe du Monde",
+    "players": "{{count}} joueurs",
+    "entry": "Mise",
+    "prizePool": "Gains",
+    "operator": "Opérateur ({{pct}}%)",
+    "transparent": "Transparent et non dépositaire",
+    "join": "Rejoindre pour {{fee}} {{symbol}}",
+    "joining": "Confirmation dans le portefeuille…",
+    "joined": "Vous êtes inscrit — bonne chance !",
+    "connectToJoin": "Connectez un portefeuille pour rejoindre",
+    "comingSoon": "Rejoindre pour {{fee}} {{symbol}} — bientôt (testnet d’abord)",
+    "testMode": "Le contrat sera déployé avant le lancement — mode test.",
+    "viewContract": "Voir le contrat ↗",
+    "regulated": "Les concours payants sont réglementés. Éligibilité et conditions s’appliquent."
+  },
+  "wallet": { "connect": "Connecter le portefeuille", "connecting": "Connexion…", "getWallet": "Obtenir un portefeuille", "disconnect": "Déconnecter" }
+}

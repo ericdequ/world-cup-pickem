@@ -1,0 +1,59 @@
+{
+  "nav": { "predict": "Palpites", "lineups": "Escalações", "players": "Jogadores", "pool": "Bolão", "profile": "Perfil" },
+  "section": { "predict": "Faça seus palpites", "lineups": "Escalações", "players": "Pesquisa de jogadores", "pool": "O bolão", "profile": "Perfil" },
+  "stage": {
+    "group": "Fase de grupos",
+    "round-of-32": "Trigésimas de final",
+    "round-of-16": "Oitavas de final",
+    "quarter-final": "Quartas de final",
+    "semi-final": "Semifinais",
+    "third-place": "Disputa de 3º lugar",
+    "final": "Final"
+  },
+  "match": {
+    "group": "Grupo {{group}}",
+    "locked": "Bloqueado",
+    "locksAt": "Fecha {{time}}",
+    "live": "AO VIVO",
+    "ft": "Fim {{score}}",
+    "points": "+{{n}} pts",
+    "noPoints": "Sem pontos nesta partida",
+    "yourPick": "seu palpite {{home}}–{{away}}",
+    "setScore": "Defina um placar para salvar seu palpite"
+  },
+  "predict": { "loading": "Carregando jogos…", "error": "Não foi possível carregar os jogos." },
+  "profile": {
+    "account": "Conta",
+    "localMode": "Modo local — seus palpites são salvos neste dispositivo.",
+    "signInPrompt": "Entre para salvar seus palpites e jogar o bolão global.",
+    "sendLink": "Enviar link mágico",
+    "linkSent": "Verifique seu e-mail para o link de acesso.",
+    "signedIn": "Conectado · sincronizado",
+    "signOut": "Sair",
+    "favorite": "Time favorito",
+    "favoriteHint": "Receba um lembrete antes de cada jogo e quando sair o resultado.",
+    "reminders": "Lembretes",
+    "remindersHint": "Alertas de início e lembretes de placar no fim do jogo.",
+    "enableNotifs": "Ativar notificações",
+    "notifsOn": "Notificações ativadas",
+    "language": "Idioma",
+    "email": "voce@email.com"
+  },
+  "pot": {
+    "title": "Bolão global da Copa",
+    "players": "{{count}} jogadores",
+    "entry": "Entrada",
+    "prizePool": "Prêmio",
+    "operator": "Operador ({{pct}}%)",
+    "transparent": "Transparente e sem custódia",
+    "join": "Participe por {{fee}} {{symbol}}",
+    "joining": "Confirmando na carteira…",
+    "joined": "Você está dentro — boa sorte!",
+    "connectToJoin": "Conecte uma carteira para participar",
+    "comingSoon": "Participe por {{fee}} {{symbol}} — em breve (testnet primeiro)",
+    "testMode": "O contrato será implantado antes do lançamento — modo de teste.",
+    "viewContract": "Ver contrato ↗",
+    "regulated": "Concursos pagos são regulamentados. Elegibilidade e termos se aplicam."
+  },
+  "wallet": { "connect": "Conectar carteira", "connecting": "Conectando…", "getWallet": "Obter uma carteira", "disconnect": "Desconectar" }
+}

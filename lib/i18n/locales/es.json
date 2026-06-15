@@ -1,0 +1,59 @@
+{
+  "nav": { "predict": "Predecir", "lineups": "Alineaciones", "players": "Jugadores", "pool": "Quiniela", "profile": "Perfil" },
+  "section": { "predict": "Haz tus pronósticos", "lineups": "Alineaciones", "players": "Buscar jugadores", "pool": "La quiniela", "profile": "Perfil" },
+  "stage": {
+    "group": "Fase de grupos",
+    "round-of-32": "Dieciseisavos",
+    "round-of-16": "Octavos de final",
+    "quarter-final": "Cuartos de final",
+    "semi-final": "Semifinales",
+    "third-place": "Tercer puesto",
+    "final": "Final"
+  },
+  "match": {
+    "group": "Grupo {{group}}",
+    "locked": "Bloqueado",
+    "locksAt": "Cierra {{time}}",
+    "live": "EN VIVO",
+    "ft": "Final {{score}}",
+    "points": "+{{n}} pts",
+    "noPoints": "Sin puntos en este partido",
+    "yourPick": "tu pronóstico {{home}}–{{away}}",
+    "setScore": "Pon un marcador para guardar tu pronóstico"
+  },
+  "predict": { "loading": "Cargando partidos…", "error": "No se pudieron cargar los partidos." },
+  "profile": {
+    "account": "Cuenta",
+    "localMode": "Modo local — tus pronósticos se guardan en este dispositivo.",
+    "signInPrompt": "Inicia sesión para guardar tus pronósticos y jugar la quiniela global.",
+    "sendLink": "Enviar enlace mágico",
+    "linkSent": "Revisa tu correo para el enlace de acceso.",
+    "signedIn": "Sesión iniciada · sincronizado",
+    "signOut": "Cerrar sesión",
+    "favorite": "Equipo favorito",
+    "favoriteHint": "Recibe un aviso antes de cada partido y cuando haya resultados.",
+    "reminders": "Recordatorios",
+    "remindersHint": "Avisos de inicio y recordatorios de marcador al final.",
+    "enableNotifs": "Activar notificaciones",
+    "notifsOn": "Notificaciones activadas",
+    "language": "Idioma",
+    "email": "tu@correo.com"
+  },
+  "pot": {
+    "title": "Quiniela global del Mundial",
+    "players": "{{count}} jugadores",
+    "entry": "Entrada",
+    "prizePool": "Premio",
+    "operator": "Operador ({{pct}}%)",
+    "transparent": "Transparente y sin custodia",
+    "join": "Únete por {{fee}} {{symbol}}",
+    "joining": "Confirmando en la cartera…",
+    "joined": "¡Estás dentro, mucha suerte!",
+    "connectToJoin": "Conecta una cartera para unirte",
+    "comingSoon": "Únete por {{fee}} {{symbol}} — próximamente (primero testnet)",
+    "testMode": "El contrato se despliega antes del lanzamiento — modo de prueba.",
+    "viewContract": "Ver contrato ↗",
+    "regulated": "Los concursos de pago están regulados. Elegibilidad y términos aplican."
+  },
+  "wallet": { "connect": "Conectar cartera", "connecting": "Conectando…", "getWallet": "Obtener una cartera", "disconnect": "Desconectar" }
+}

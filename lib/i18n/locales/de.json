@@ -1,0 +1,59 @@
+{
+  "nav": { "predict": "Tippen", "lineups": "Aufstellungen", "players": "Spieler", "pool": "Pool", "profile": "Profil" },
+  "section": { "predict": "Gib deine Tipps ab", "lineups": "Aufstellungen", "players": "Spielersuche", "pool": "Der Pool", "profile": "Profil" },
+  "stage": {
+    "group": "Gruppenphase",
+    "round-of-32": "Sechzehntelfinale",
+    "round-of-16": "Achtelfinale",
+    "quarter-final": "Viertelfinale",
+    "semi-final": "Halbfinale",
+    "third-place": "Spiel um Platz 3",
+    "final": "Finale"
+  },
+  "match": {
+    "group": "Gruppe {{group}}",
+    "locked": "Gesperrt",
+    "locksAt": "Sperrt {{time}}",
+    "live": "LIVE",
+    "ft": "Ende {{score}}",
+    "points": "+{{n}} Pkt.",
+    "noPoints": "Keine Punkte in diesem Spiel",
+    "yourPick": "dein Tipp {{home}}–{{away}}",
+    "setScore": "Ergebnis eingeben, um deinen Tipp zu speichern"
+  },
+  "predict": { "loading": "Spiele werden geladen…", "error": "Spiele konnten nicht geladen werden." },
+  "profile": {
+    "account": "Konto",
+    "localMode": "Lokaler Modus — deine Tipps werden auf diesem Gerät gespeichert.",
+    "signInPrompt": "Melde dich an, um deine Tipps zu speichern und am globalen Pool teilzunehmen.",
+    "sendLink": "Magischen Link senden",
+    "linkSent": "Sieh in deinem Postfach nach dem Anmeldelink.",
+    "signedIn": "Angemeldet · synchronisiert",
+    "signOut": "Abmelden",
+    "favorite": "Lieblingsteam",
+    "favoriteHint": "Erhalte eine Erinnerung vor jedem Spiel und wenn Ergebnisse vorliegen.",
+    "reminders": "Erinnerungen",
+    "remindersHint": "Anstoß-Hinweise und Ergebnis-Erinnerungen nach Spielende.",
+    "enableNotifs": "Benachrichtigungen aktivieren",
+    "notifsOn": "Benachrichtigungen aktiviert",
+    "language": "Sprache",
+    "email": "du@email.com"
+  },
+  "pot": {
+    "title": "WM Global-Pool",
+    "players": "{{count}} Spieler",
+    "entry": "Einsatz",
+    "prizePool": "Gewinntopf",
+    "operator": "Betreiber ({{pct}}%)",
+    "transparent": "Transparent & treuhandfrei",
+    "join": "Mitmachen für {{fee}} {{symbol}}",
+    "joining": "Bestätigung im Wallet…",
+    "joined": "Du bist dabei — viel Glück!",
+    "connectToJoin": "Wallet verbinden zum Mitmachen",
+    "comingSoon": "Mitmachen für {{fee}} {{symbol}} — bald (zuerst Testnet)",
+    "testMode": "Vertrag wird vor dem Start bereitgestellt — Testmodus.",
+    "viewContract": "Vertrag ansehen ↗",
+    "regulated": "Bezahlte Wettbewerbe sind reguliert. Teilnahmebedingungen gelten."
+  },
+  "wallet": { "connect": "Wallet verbinden", "connecting": "Verbinden…", "getWallet": "Wallet holen", "disconnect": "Trennen" }
+}

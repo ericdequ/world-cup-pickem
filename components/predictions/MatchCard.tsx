@@ -1,29 +1,37 @@
 "use client";
 
+import { useTranslation } from "react-i18next";
 import type { Match, Prediction, Score, Team } from "@/lib/types";
 import { isLocked, scorePrediction } from "@/lib/predictions";
 import { cn } from "@/lib/cn";
+import { useLocale } from "@/hooks/useLocale";
 import { Badge } from "@/components/ui/Badge";
 import { ScoreStepper } from "@/components/ui/ScoreStepper";
 
-const time = (iso: string) =>
-  new Date(iso).toLocaleString(undefined, {
-    weekday: "short",
-    hour: "numeric",
-    minute: "2-digit",
-  });
-
 function StatusPill({ match, locked }: { match: Match; locked: boolean }) {
-  if (match.status === "live") return <Badge tone="unpaid">🔴 LIVE</Badge>;
+  const { t } = useTranslation();
+  const { formatDateTime } = useLocale();
+
+  if (match.status === "live") return <Badge tone="unpaid">🔴 {t("match.live")}</Badge>;
   if (match.status === "finished")
     return (
       <Badge tone="gold">
-        FT {match.result ? `${match.result.home}–${match.result.away}` : ""}
+        {t("match.ft", {
+          score: match.result ? `${match.result.home}–${match.result.away}` : "",
+        })}
       </Badge>
     );
   return (
     <span className={cn("text-[11px] font-semibold", locked ? "text-red-400" : "text-muted")}>
-      {locked ? "🔒 Locked" : `Locks ${time(match.kickoff)}`}
+      {locked
+        ? `🔒 ${t("match.locked")}`
+        : t("match.locksAt", {
+            time: formatDateTime(match.kickoff, {
+              weekday: "short",
+              hour: "numeric",
+              minute: "2-digit",
+            }),
+          })}
     </span>
   );
 }
@@ -61,6 +69,7 @@ export function MatchCard({
   prediction?: Prediction;
   onChange: (score: Score) => void;
 }) {
+  const { t } = useTranslation();
   const locked = isLocked(match);
   const score: Score = prediction?.score ?? { home: 0, away: 0 };
   const set = (side: "home" | "away", v: number) => onChange({ ...score, [side]: v });
@@ -75,7 +84,7 @@ export function MatchCard({
     >
       <div className="mb-3 flex items-center justify-between">
         <span className="text-[11px] font-bold uppercase tracking-[0.1em] text-muted">
-          {match.group ? `Group ${match.group}` : ""}
+          {match.group ? t("match.group", { group: match.group }) : ""}
           {match.venue ? <span className="font-normal"> · {match.venue}</span> : null}
         </span>
         <StatusPill match={match} locked={locked} />
@@ -89,16 +98,17 @@ export function MatchCard({
       {earned !== null && (
         <div className="mt-3 border-t border-pitch-border pt-2.5 text-center text-[13px]">
           <span className={cn("font-bold", earned > 0 ? "text-gold-light" : "text-muted")}>
-            {earned > 0 ? `✓ +${earned} pts` : "No points this match"}
+            {earned > 0 ? `✓ ${t("match.points", { n: earned })}` : t("match.noPoints")}
           </span>
-          <span className="text-muted"> · your pick {score.home}–{score.away}</span>
+          <span className="text-muted">
+            {" · "}
+            {t("match.yourPick", { home: score.home, away: score.away })}
+          </span>
         </div>
       )}
 
       {!locked && !prediction && (
-        <p className="mt-3 text-center text-[11px] text-muted">
-          Set a score to save your prediction
-        </p>
+        <p className="mt-3 text-center text-[11px] text-muted">{t("match.setScore")}</p>
       )}
     </div>
   );

@@ -65,6 +65,17 @@ export async function enterPool(provider: EIP1193Provider, account: Address): Pr
   if (!escrowAddress) throw new Error("Pool contract is not configured yet.");
 
   const wallet = createWalletClient({ account, chain: activeChain, transport: custom(provider) });
+
+  // SECURITY: verify the wallet is on the expected chain before signing, so a
+  // wrong-network wallet can't send funds to an address that isn't our escrow.
+  const walletChainId = await wallet.getChainId();
+  if (walletChainId !== activeChain.id) {
+    throw new Error(`Wrong network. Switch your wallet to ${activeChain.name}.`);
+  }
+
+  // Fail fast (and save gas) if already entered — the contract also enforces this.
+  if (await hasEntered(account)) throw new Error("This wallet has already joined.");
+
   const fee = parseUnits(String(ENTRY_FEE), stablecoin.decimals);
 
   // 1) Approve the escrow to spend exactly the entry fee.

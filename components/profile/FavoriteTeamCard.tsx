@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import type { Team } from "@/lib/types";
 import { useMatches } from "@/hooks/useMatches";
 import { useFavoriteTeam } from "@/hooks/useFavoriteTeam";
@@ -9,6 +10,7 @@ import { cn } from "@/lib/cn";
 import { ensureNotificationPermission, scheduleTeamReminders } from "@/lib/notifications";
 
 export function FavoriteTeamCard() {
+  const { t } = useTranslation();
   const { data: matches } = useMatches();
   const [favorite, setFavorite] = useFavoriteTeam();
 
@@ -33,11 +35,9 @@ export function FavoriteTeamCard() {
   return (
     <Card className="p-5">
       <h2 className="mb-1 text-[13px] font-bold uppercase tracking-[0.15em] text-gold">
-        Favorite Team
+        {t("profile.favorite")}
       </h2>
-      <p className="mb-3 text-[12px] text-muted">
-        Get a reminder before every game and when results are in.
-      </p>
+      <p className="mb-3 text-[12px] text-muted">{t("profile.favoriteHint")}</p>
       <div className="flex flex-wrap gap-2">
         {teams.map((team) => (
           <button

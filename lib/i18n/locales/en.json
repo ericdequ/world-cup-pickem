@@ -1,0 +1,59 @@
+{
+  "nav": { "predict": "Predict", "lineups": "Lineups", "players": "Players", "pool": "Pool", "profile": "Profile" },
+  "section": { "predict": "Make Your Picks", "lineups": "Team Lineups", "players": "Player Research", "pool": "The Pool", "profile": "Profile" },
+  "stage": {
+    "group": "Group Stage",
+    "round-of-32": "Round of 32",
+    "round-of-16": "Round of 16",
+    "quarter-final": "Quarter-finals",
+    "semi-final": "Semi-finals",
+    "third-place": "Third-place Play-off",
+    "final": "Final"
+  },
+  "match": {
+    "group": "Group {{group}}",
+    "locked": "Locked",
+    "locksAt": "Locks {{time}}",
+    "live": "LIVE",
+    "ft": "FT {{score}}",
+    "points": "+{{n}} pts",
+    "noPoints": "No points this match",
+    "yourPick": "your pick {{home}}–{{away}}",
+    "setScore": "Set a score to save your prediction"
+  },
+  "predict": { "loading": "Loading fixtures…", "error": "Couldn’t load fixtures." },
+  "profile": {
+    "account": "Account",
+    "localMode": "Running in local mode — your picks are saved on this device.",
+    "signInPrompt": "Sign in to save your predictions and play the global pool.",
+    "sendLink": "Send magic link",
+    "linkSent": "Check your email for a sign-in link.",
+    "signedIn": "Signed in · synced",
+    "signOut": "Sign out",
+    "favorite": "Favorite Team",
+    "favoriteHint": "Get a reminder before every game and when results are in.",
+    "reminders": "Reminders",
+    "remindersHint": "Kickoff alerts and score reminders after full time.",
+    "enableNotifs": "Enable notifications",
+    "notifsOn": "Notifications enabled",
+    "language": "Language",
+    "email": "you@email.com"
+  },
+  "pot": {
+    "title": "World Cup Global Pool",
+    "players": "{{count}} players",
+    "entry": "Entry",
+    "prizePool": "Prize Pool",
+    "operator": "Operator ({{pct}}%)",
+    "transparent": "Transparent & non-custodial",
+    "join": "Join for {{fee}} {{symbol}}",
+    "joining": "Confirming in wallet…",
+    "joined": "You're in — good luck!",
+    "connectToJoin": "Connect a wallet to join",
+    "comingSoon": "Join for {{fee}} {{symbol}} — coming soon (testnet first)",
+    "testMode": "Contract deploys before launch — currently test mode.",
+    "viewContract": "View contract ↗",
+    "regulated": "Paid contests are regulated. Eligibility, geofencing & terms apply at launch."
+  },
+  "wallet": { "connect": "Connect Wallet", "connecting": "Connecting…", "getWallet": "Get a Wallet", "disconnect": "Disconnect" }
+}

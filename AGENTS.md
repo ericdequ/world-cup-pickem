@@ -114,3 +114,27 @@ Rules:
   EIP-1193 standard — no extra SDK or project keys; the user signs everything.
 - **The escrow contract is UNAUDITED.** Testnet only until audited; paid contests
   are regulated.
+
+## i18n, time/locale & security
+
+```
+lib/i18n/
+  config.ts        i18next init (lng:"en" fixed for hydration), LANGUAGES + dir
+  format.ts        native Intl date/number/currency formatters (no date lib)
+  locales/*.json   en, es, fr, pt, de, ar (RTL)
+hooks/useLocale.ts active locale + user timezone + bound formatters
+components/i18n/    LanguageProvider (detect + RTL after mount), LanguageSwitcher
+components/security/Turnstile.tsx   optional Cloudflare CAPTCHA on sign-in
+vercel.json        CSP + HSTS + frame/permissions security headers
+SECURITY.md        threat model + pre-mainnet checklist
+```
+
+Rules:
+- **Language:** translate UI via `useTranslation().t("namespace.key")`; add strings
+  to all `locales/*.json`. Detection runs post-mount (deterministic SSR paint),
+  switching persists to localStorage and flips `<html dir>` for RTL.
+- **Time/dates:** never `toLocaleString` directly — use `useLocale().formatDateTime`
+  so every kickoff renders in the viewer's timezone + language via native `Intl`.
+- **Security layers:** magic-link auth (no passwords) + Turnstile + Supabase rate
+  limits + RLS; non-custodial escrow with chain-ID/double-entry checks + receipt
+  waits; Vercel WAF/headers + pay-to-play for DDoS/Sybil resistance. See SECURITY.md.

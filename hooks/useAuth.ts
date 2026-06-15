@@ -24,9 +24,17 @@ export function useAuth() {
     return () => data.subscription.unsubscribe();
   }, []);
 
-  const signInWithEmail = async (email: string) => {
+  /**
+   * Passwordless magic-link sign-in. `captchaToken` (Cloudflare Turnstile) is
+   * passed through to Supabase when CAPTCHA is enabled, blocking automated
+   * sign-up spam. Magic-link means there's no password to leak or brute-force.
+   */
+  const signInWithEmail = async (email: string, captchaToken?: string) => {
     if (!supabase) throw new Error("Auth is not configured");
-    return supabase.auth.signInWithOtp({ email });
+    return supabase.auth.signInWithOtp({
+      email,
+      options: captchaToken ? { captchaToken } : undefined,
+    });
   };
 
   const signOut = async () => {
