@@ -1,51 +1,40 @@
 "use client";
 
 import { useState } from "react";
-import type { TabKey } from "@/lib/types";
-import { tournament } from "@/lib/config";
-import { calculatePot } from "@/lib/scoring";
-import { usePlayers } from "@/hooks/usePlayers";
 import { Hero } from "@/components/layout/Hero";
-import { TabBar } from "@/components/layout/TabBar";
-import { Leaderboard } from "@/components/leaderboard/Leaderboard";
-import { PlayerEditModal } from "@/components/leaderboard/PlayerEditModal";
-import { Rules } from "@/components/rules/Rules";
+import { BottomNav, type AppSection } from "@/components/layout/BottomNav";
+import { PredictionsBoard } from "@/components/predictions/PredictionsBoard";
+import { LineupDisplay } from "@/components/lineup/LineupDisplay";
+import { PlayerResearch } from "@/components/players/PlayerResearch";
+import { PoolPanel } from "@/components/pool/PoolPanel";
+import { ProfilePanel } from "@/components/profile/ProfilePanel";
+
+const SECTION_TITLE: Record<AppSection, string> = {
+  predict: "Make Your Picks",
+  lineups: "Team Lineups",
+  players: "Player Research",
+  pool: "The Pool",
+  profile: "Profile",
+};
 
 export default function Home() {
-  const { players, addPlayer, updatePlayer, removePlayer } = usePlayers();
-  const [tab, setTab] = useState<TabKey>("board");
-  const [editingId, setEditingId] = useState<string | null>(null);
-
-  const editing = players.find((p) => p.id === editingId) ?? null;
-  const pot = calculatePot(players, tournament.entryFee);
+  const [section, setSection] = useState<AppSection>("predict");
 
   return (
-    <main className="min-h-screen bg-pitch">
-      <Hero pot={pot} />
-      <TabBar active={tab} onChange={setTab} />
+    <main className="min-h-screen bg-pitch pb-24">
+      <Hero pot={0} />
 
-      <div className="mx-auto max-w-[760px] px-4 pb-20 pt-6">
-        {tab === "board" ? (
-          <Leaderboard players={players} onSelect={setEditingId} onAdd={addPlayer} />
-        ) : (
-          <Rules />
-        )}
+      <div className="mx-auto max-w-[760px] px-4 pt-6">
+        <h1 className="mb-4 text-xl font-bold text-cream">{SECTION_TITLE[section]}</h1>
+
+        {section === "predict" && <PredictionsBoard />}
+        {section === "lineups" && <LineupDisplay />}
+        {section === "players" && <PlayerResearch />}
+        {section === "pool" && <PoolPanel />}
+        {section === "profile" && <ProfilePanel />}
       </div>
 
-      {editing && (
-        <PlayerEditModal
-          player={editing}
-          onSave={(updated) => {
-            updatePlayer(updated);
-            setEditingId(null);
-          }}
-          onDelete={() => {
-            removePlayer(editing.id);
-            setEditingId(null);
-          }}
-          onClose={() => setEditingId(null)}
-        />
-      )}
+      <BottomNav active={section} onChange={setSection} />
     </main>
   );
 }

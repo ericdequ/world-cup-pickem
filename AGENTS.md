@@ -43,9 +43,39 @@ components/
 - **`@/` path alias** maps to the repo root.
 - **Client components** (`"use client"`) only where interactivity/state is needed.
 
-## Future: realtime data + 2030
+## Platform layer (accounts, data, predictions, native, pot)
 
-Live scores/standings are intended to come from a self-hosted
-`rezarahiminia/worldcup2026` API (separate backend). When wiring it in, add a
-`lib/api/` data layer and have it feed `usePlayers`/scoring — keep components
-config- and prop-driven so the swap stays localized.
+```
+app/page.tsx          App shell: BottomNav + 5 sections (predict/lineups/players/pool/profile)
+lib/
+  data/               Free-API data layer (adapter pattern)
+    provider.ts         MatchDataProvider interface — the only thing components depend on
+    thesportsdb.ts      TheSportsDB impl (free, no key); degrades to fallbackMatches
+    index.ts            `dataProvider` — swap this one line to change source
+  predictions.ts      Pure locking + scoring (isLocked, scorePrediction, totalPoints)
+  notifications.ts    Capacitor LocalNotifications + web fallback (kickoff/score reminders)
+  supabase/client.ts  Browser client; null + isSupabaseConfigured when env absent
+  crypto/pot.ts       USDC-escrow-on-Base economics + getGlobalTournament (read-only)
+hooks/                useMatches/useLineup, usePlayerSearch, usePredictions,
+                      useAuth, useFavoriteTeam, useAsyncData
+components/
+  predictions/        PredictionsBoard, MatchCard (score steppers, kickoff lock)
+  lineup/ players/     LineupDisplay, PlayerResearch (fed by dataProvider)
+  pool/ tournament/    PoolPanel (friends + global + rules), PotPanel (transparency)
+  profile/            AccountCard (Supabase magic-link), FavoriteTeamCard, NotificationsCard
+capacitor.config.ts   Wraps the static `out/` export into native iOS/Android
+```
+
+Key rules:
+- **Static export.** `next.config.ts` sets `output: "export"` so the app stays a
+  client-only SPA wrappable by Capacitor. No server actions / route handlers.
+- **Locking is sacred.** A prediction locks at kickoff — enforced in one pure
+  function (`isLocked`) used everywhere.
+- **Data swap = one line.** Components depend on `MatchDataProvider`, not the
+  vendor. Default is TheSportsDB; API-Football or the self-hosted
+  `rezarahiminia/worldcup2026` API drop in via `lib/data/index.ts`.
+- **Graceful degradation.** No Supabase env → local-only mode. No pot contract →
+  transparency panel shows placeholder/testnet. App always runs.
+- **Pot is non-custodial.** USDC escrow on Base (test on Base Sepolia first);
+  on-chain reads make the pot + entrants publicly verifiable. Real money is
+  regulated — gate eligibility/geofencing/terms before launch.
