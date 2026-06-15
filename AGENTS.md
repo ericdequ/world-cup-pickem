@@ -79,3 +79,38 @@ Key rules:
 - **Pot is non-custodial.** USDC escrow on Base (test on Base Sepolia first);
   on-chain reads make the pot + entrants publicly verifiable. Real money is
   regulated — gate eligibility/geofencing/terms before launch.
+
+## Cloud sync, crypto & the API quota cache
+
+```
+supabase/
+  migrations/0001_predictions.sql    predictions table + RLS (own rows only)
+  migrations/0002_fixtures_cache.sql fixtures_cache table + public read
+  functions/cache-fixtures/          Deno Edge Function: cron-refresh the cache
+lib/data/
+  predictionsRepo.ts                 Supabase CRUD for predictions
+  cachedProvider.ts                  reads fixtures_cache first, falls back to live
+lib/crypto/
+  stablecoins.ts   registry — add a host country's coin, point NEXT_PUBLIC_STABLECOIN at it
+  config.ts        chain/token/escrow/fee/rake, all env-driven
+  client.ts        viem public client (read-only)
+  escrow.ts        readPot / hasEntered / enterPool (approve → enter)
+  escrowAbi.ts     typed ABI (as const)
+  escrow/PoolEscrow.sol  documented, OZ-based, ReentrancyGuard, rake-capped (UNAUDITED)
+  pot.ts           pure economics (operatorTake, prizePool)
+hooks/  usePredictions (local+cloud merge), useWallet (EIP-1193), useOnChainPot
+```
+
+Rules:
+- **Predictions sync** local-first; on sign-in, local ⨉ cloud merge keeps the
+  newest pick per match, then writes through to Supabase.
+- **Free-tier API quota.** A rate-limited source (e.g. API-Football ~100/day)
+  must NOT be called per client. The `cache-fixtures` Edge Function fetches once
+  on a cron into `fixtures_cache`; `cachedProvider` makes every client read that
+  table. Default TheSportsDB has no hard cap, but the cache path is already wired.
+- **Stablecoin is swappable** for the host country: add it to `stablecoins.ts`
+  and set `NEXT_PUBLIC_STABLECOIN`. Decimals + address come from the registry.
+- **Crypto deps:** only `viem` (audited, minimal). Wallet via the injected
+  EIP-1193 standard — no extra SDK or project keys; the user signs everything.
+- **The escrow contract is UNAUDITED.** Testnet only until audited; paid contests
+  are regulated.
