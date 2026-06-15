@@ -121,7 +121,7 @@ Rules:
 lib/i18n/
   config.ts        i18next init (lng:"en" fixed for hydration), LANGUAGES + dir
   format.ts        native Intl date/number/currency formatters (no date lib)
-  locales/*.json   en, es, fr, pt, de, ar (RTL)
+  locales/*.json   en, es, fr, pt, de
 hooks/useLocale.ts active locale + user timezone + bound formatters
 components/i18n/    LanguageProvider (detect + RTL after mount), LanguageSwitcher
 components/security/Turnstile.tsx   optional Cloudflare CAPTCHA on sign-in
