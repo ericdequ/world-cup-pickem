@@ -34,16 +34,21 @@ export async function fetchPredictions(userId: string): Promise<Record<string, P
   return out;
 }
 
-/** Insert or update a single prediction. */
+/**
+ * Insert or update a single prediction. `submitted_at` is intentionally NOT sent:
+ * the database trigger server-stamps it and rejects the write if the match has
+ * already kicked off (see migration 0003) — the authoritative, non-spoofable lock.
+ * A rejected write throws; callers treat that as "locked".
+ */
 export async function upsertPrediction(userId: string, p: Prediction): Promise<void> {
   if (!supabase) return;
-  await supabase.from("predictions").upsert({
+  const { error } = await supabase.from("predictions").upsert({
     user_id: userId,
     match_id: p.matchId,
     home_score: p.score.home,
     away_score: p.score.away,
-    submitted_at: p.submittedAt,
   });
+  if (error) throw error;
 }
 
 /** Remove a prediction. */

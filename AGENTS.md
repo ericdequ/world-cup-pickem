@@ -71,8 +71,11 @@ capacitor.config.ts   Wraps the static `out/` export into native iOS/Android
 Key rules:
 - **Static export.** `next.config.ts` sets `output: "export"` so the app stays a
   client-only SPA wrappable by Capacitor. No server actions / route handlers.
-- **Locking is sacred.** A prediction locks at kickoff — enforced in one pure
-  function (`isLocked`) used everywhere.
+- **Locking is sacred & non-spoofable.** `isLocked` is evaluated against trusted
+  server-synced time (`useNow`/`lib/time/serverTime.ts`), never the device clock.
+  The authoritative lock is a DB trigger (migration 0003) that rejects post-kickoff
+  edits by server time and server-stamps `submitted_at`. Users preselect anytime
+  and get a lineup-announced reminder (~1h before) to revise before it locks.
 - **Data swap = one line.** Components depend on `MatchDataProvider`, not the
   vendor. Default is TheSportsDB; API-Football or the self-hosted
   `rezarahiminia/worldcup2026` API drop in via `lib/data/index.ts`.

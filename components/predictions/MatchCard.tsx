@@ -5,6 +5,7 @@ import type { Match, Prediction, Score, Team } from "@/lib/types";
 import { isLocked, scorePrediction } from "@/lib/predictions";
 import { cn } from "@/lib/cn";
 import { useLocale } from "@/hooks/useLocale";
+import { useNow } from "@/hooks/useNow";
 import { Badge } from "@/components/ui/Badge";
 import { ScoreStepper } from "@/components/ui/ScoreStepper";
 
@@ -83,7 +84,8 @@ export function MatchCard({
   onTeamClick?: (team: Team) => void;
 }) {
   const { t } = useTranslation();
-  const locked = isLocked(match);
+  const now = useNow();
+  const locked = isLocked(match, now);
   const score: Score = prediction?.score ?? { home: 0, away: 0 };
   const set = (side: "home" | "away", v: number) => onChange({ ...score, [side]: v });
   const earned = prediction && match.result ? scorePrediction(prediction, match) : null;

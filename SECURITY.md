@@ -27,6 +27,18 @@ what must be done before taking real funds.
 - **Transparency:** anyone can read the pot balance + entrant count on-chain, so
   funds are publicly auditable.
 
+## Prediction locking (non-spoofable)
+- **Authoritative lock in the database.** A trigger (`supabase/migrations/0003`)
+  rejects any insert/update to a prediction once the match's kickoff has passed,
+  judged by the **server's** `now()`. A user changing their device clock cannot
+  bypass it. The trigger also **server-stamps `submitted_at`**, so submission
+  time can't be forged (the scoring rules depend on it).
+- **Client uses trusted time, not the device clock.** `lib/time/serverTime.ts`
+  syncs an offset from a server `Date` header and `isLocked()` is evaluated
+  against that (`useNow`), so a spoofed local clock doesn't even change the UI.
+- Keep `match_kickoffs` populated (via the cache-fixtures function) so every
+  match is enforced; unknown kickoffs are permissive by design.
+
 ## Network / DDoS
 - **Vercel edge** provides automatic DDoS mitigation; enable the **WAF + Attack
   Challenge Mode** in the Vercel dashboard for spikes.

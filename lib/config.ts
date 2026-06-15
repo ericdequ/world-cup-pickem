@@ -18,10 +18,10 @@ export const tournament: TournamentConfig = {
     { label: "Post-kickoff exact (0-0 at HT)", points: 1, icon: "⏱" },
   ],
   rules: [
-    "Predictions only after lineups are announced",
-    "Must be sent before kickoff for full points",
+    "Preselect your pick anytime — you'll get a reminder when lineups drop (~1h before kickoff) so you can revise it",
+    "Picks lock automatically at kickoff and can't be changed after",
+    "Lock time is verified against trusted server time, so it can't be spoofed",
     "Predictions sent by text in group chat",
-    "Lineups sent in GC 1 hour before kickoff",
     'Format: "BRAvMAR: 2-2" or "MEXvRSA: 3-1 Mexico"',
     "Limit GC chat once prediction time begins",
     "Entry fee due before end of GW1 or you are disqualified",

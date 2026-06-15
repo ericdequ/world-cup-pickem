@@ -45,14 +45,34 @@ async function schedule(id: number, at: Date, title: string, body: string) {
   }
 }
 
+/** Minutes before kickoff that lineups are typically announced. */
+export const LINEUP_LEAD_MINUTES = 60;
+
+/**
+ * Remind the user when lineups are announced (~1h before kickoff) so they can
+ * revise the pick they preselected — before it locks at kickoff.
+ */
+export async function scheduleLineupReminder(
+  match: Match,
+  minutesBefore = LINEUP_LEAD_MINUTES,
+): Promise<void> {
+  const at = new Date(new Date(match.kickoff).getTime() - minutesBefore * 60_000);
+  await schedule(
+    idFrom(`lineup:${match.id}`),
+    at,
+    `${match.home.code} vs ${match.away.code} — lineups are out`,
+    "Review and revise your prediction before kickoff locks it.",
+  );
+}
+
 /** Remind the user to lock their pick shortly before kickoff. */
-export async function scheduleKickoffReminder(match: Match, minutesBefore = 60): Promise<void> {
+export async function scheduleKickoffReminder(match: Match, minutesBefore = 15): Promise<void> {
   const at = new Date(new Date(match.kickoff).getTime() - minutesBefore * 60_000);
   await schedule(
     idFrom(`kickoff:${match.id}`),
     at,
     `${match.home.code} vs ${match.away.code} — kickoff soon`,
-    `Lock your prediction. Kickoff in ${minutesBefore} min.`,
+    `Final call to lock your prediction. Kickoff in ${minutesBefore} min.`,
   );
 }
 
@@ -75,6 +95,7 @@ export async function scheduleTeamReminders(teamCode: string, matches: Match[]):
       new Date(m.kickoff).getTime() > Date.now(),
   );
   for (const match of upcoming) {
+    await scheduleLineupReminder(match);
     await scheduleKickoffReminder(match);
     await scheduleScoreReminder(match);
   }

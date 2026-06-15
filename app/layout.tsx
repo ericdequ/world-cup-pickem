@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/i18n/LanguageProvider";
+import { NowProvider } from "@/components/time/NowProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,7 +26,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${bebasNeue.variable}`}>
       <body>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          <NowProvider>{children}</NowProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
